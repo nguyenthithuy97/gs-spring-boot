@@ -1,10 +1,24 @@
 package com.example.springboot.Service;
 
 import com.example.springboot.Entity.UserEntity;
+import com.example.springboot.Repository.UserRepository;
 import org.springframework.stereotype.Service;
+
+/**
+ *  user Service
+ *  author Thuynt2
+ */
 
 @Service
 public class UserService {
+
+    // repository
+    private UserRepository userRepository;
+
+    // Constructor
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     /**
      * get user information by id
