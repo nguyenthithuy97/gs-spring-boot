@@ -1,7 +1,7 @@
 package com.example.springboot.Service;
 
-import com.example.springboot.Entity.UserEntity;
-import com.example.springboot.Repository.UserRepository;
+import com.example.springboot.Repository.UserMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -13,11 +13,12 @@ import org.springframework.stereotype.Service;
 public class UserService {
 
     // repository
-    private UserRepository userRepository;
+    private UserMapper userMapper;
 
     // Constructor
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    @Autowired
+    public UserService(UserMapper userMapper) {
+        this.userMapper = userMapper;
     }
 
     /**
@@ -25,9 +26,8 @@ public class UserService {
      * @param id
      * @return user
      */
-    public UserEntity getUserInfo(Integer id) {
-        //TODO
-        return new UserEntity();
+    public String getUserInfo(Integer id) {
+        return userMapper.selectUserByID(id).toString();
     }
 
     /**

@@ -1,7 +1,7 @@
 package com.example.springboot.Controller;
 
-import com.example.springboot.Entity.UserEntity;
 import com.example.springboot.Service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,13 +18,14 @@ public class UserController {
     public static final String ID = "id";
     public static final String NAME = "name";
 
-    public static final String DEFAULT_ID = "0";
+    public static final String DEFAULT_ID = "1";
     public static final String DEFAULT_NAME = "World";
 
     // Services
     private UserService userService;
 
     // Constructor
+    @Autowired
     public UserController(UserService userService) {
         this.userService = userService;
     }
@@ -41,7 +42,7 @@ public class UserController {
      * get user information by id
      */
     @GetMapping("/user")
-    public UserEntity getUserInfo(@RequestParam(value = ID, defaultValue = DEFAULT_ID) Integer userId) {
+    public String getUserInfo(@RequestParam(value = ID, defaultValue = DEFAULT_ID) Integer userId) {
         return userService.getUserInfo(userId);
     }
 }
